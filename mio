@@ -1,0 +1,1 @@
+**  ORCA/M - APW Shell**  Built under ORCA/M 1.1*if {#} == 0 then   echo assemble +t +e io.asm   assemble +t +e io.asmelse   echo assemble +t +e io.asm names=({Parameters})   assemble +t +e io.asm names=({Parameters})   echo crunch obj/io   crunch obj/ioendlinkit

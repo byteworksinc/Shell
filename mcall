@@ -1,0 +1,1 @@
+**  ORCA/M - APW Shell**  Built under ORCA/M 1.1*if {#} == 0 then   echo assemble +t +e call.asm   assemble +t +e call.asmelse   echo assemble +t +e call.asm names=({Parameters})   assemble +t +e call.asm names=({Parameters})   unset exit   echo crunch obj/call   crunch obj/call   set exit onendlinkit
