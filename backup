@@ -1,1 +1,29 @@
-if "{#}" != "1"   echo Form: backup [day]   exit 65535endset dest /library/mike/{1}/shellset list        libraries/SYSLIBset list {list} backup count make linkit shell.notesset list {list} mcall mcmd mcontrol mio mline mmm msh msubs mswitchset list {list} sh.asm sh.dp sh.macros sh.rez sh.smacset list {list} call.asm call.macrosset list {list} cmd.asm cmd.macrosset list {list} control.asm control.macrosset list {list} io.asm io.macrosset list {list} line.asm line.macrosset list {list} mm.asm mm.macrosset list {list} subs.asm subs.macrosset list {list} switch.asm switch.macrosunset exitcreate {dest} >.null >&.nullcreate {dest}/libraries >.null >&.nullfor i in {list}   newer {dest}/{i} {i}   if {Status} != 0      copy -c {i} {dest}/{i}   endend
+if "{#}" != "1"
+   echo Form: backup [day]
+   exit 65535
+end
+
+set dest /library/mike/{1}/shell
+
+set list        libraries/SYSLIB
+set list {list} backup count make linkit shell.notes
+set list {list} mcall mcmd mcontrol mio mline mmm msh msubs mswitch
+set list {list} sh.asm sh.dp sh.macros sh.rez sh.smac
+set list {list} call.asm call.macros
+set list {list} cmd.asm cmd.macros
+set list {list} control.asm control.macros
+set list {list} io.asm io.macros
+set list {list} line.asm line.macros
+set list {list} mm.asm mm.macros
+set list {list} subs.asm subs.macros
+set list {list} switch.asm switch.macros
+
+unset exit
+create {dest} >.null >&.null
+create {dest}/libraries >.null >&.null
+for i in {list}
+   newer {dest}/{i} {i}
+   if {Status} != 0
+      copy -c {i} {dest}/{i}
+   end
+end

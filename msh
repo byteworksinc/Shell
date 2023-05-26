@@ -1,1 +1,19 @@
-**  ORCA/M - APW Shell**  Built under ORCA/M 1.1*if {#} == 0 then   echo assemble +t +e sh.asm   assemble +t +e sh.asmelse   echo assemble +t +e sh.asm names=({Parameters})   assemble +t +e sh.asm names=({Parameters})   unset exit   echo crunch obj/sh   crunch obj/sh   set exit onendlinkit
+*
+*  ORCA/M - APW Shell
+*
+*  Built under ORCA/M 1.1
+*
+
+if {#} == 0 then
+   echo assemble +t +e sh.asm
+   assemble +t +e sh.asm
+else
+   echo assemble +t +e sh.asm names=({Parameters})
+   assemble +t +e sh.asm names=({Parameters})
+   unset exit
+   echo crunch obj/sh
+   crunch obj/sh
+   set exit on
+end
+
+linkit

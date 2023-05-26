@@ -1,1 +1,17 @@
-**  ORCA/M - APW Shell**  Built under ORCA/M 1.1*if {#} == 0 then   echo assemble +t +e control.asm   assemble +t +e control.asmelse   echo assemble +t +e control.asm names=({Parameters})   assemble +t +e control.asm names=({Parameters})   echo crunch obj/control   crunch obj/controlendlinkit
+*
+*  ORCA/M - APW Shell
+*
+*  Built under ORCA/M 1.1
+*
+
+if {#} == 0 then
+   echo assemble +t +e control.asm
+   assemble +t +e control.asm
+else
+   echo assemble +t +e control.asm names=({Parameters})
+   assemble +t +e control.asm names=({Parameters})
+   echo crunch obj/control
+   crunch obj/control
+end
+
+linkit

@@ -1,1 +1,11 @@
-set list        sh.asm sh.rezset list {list} sh.dpset list {list} call.asmset list {list} cmd.asmset list {list} control.asmset list {list} io.asmset list {list} line.asmset list {list} switch.asmset list {list} subs.asmwc -l {list}
+set list        sh.asm sh.rez
+set list {list} sh.dp
+set list {list} call.asm
+set list {list} cmd.asm
+set list {list} control.asm
+set list {list} io.asm
+set list {list} line.asm
+set list {list} switch.asm
+set list {list} subs.asm
+
+wc -l {list}

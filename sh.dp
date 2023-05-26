@@ -1,1 +1,74 @@
-;;  Global variables effecting conditional compilation;true	gequ	1	boolean variablesfalse	gequ	0debug	gequ	false	enable/ disable trace codeapw	gequ	false	APW or ORCA/HOST version;;  Global variables used in more than one module;line_len gequ	255	line length (must be odd);;  Direct page;r0	gequ	$00	working registersr1	gequ	$01r2	gequ	$02r3	gequ	$03r4	gequ	$04r5	gequ	$05r6	gequ	$06r7	gequ	$07r8	gequ	$08r9	gequ	$09r10	gequ	$0Ar11	gequ	$0Br12	gequ	$0Cr13	gequ	$0Dr14	gequ	$0Er15	gequ	$0Fr16	gequ	$10r17	gequ	$11r18	gequ	$12r19	gequ	$13r20	gequ	$14r21	gequ	$15r22	gequ	$16r23	gequ	$17r24	gequ	$18r25	gequ	$19r26	gequ	$1Ar27	gequ	$1Bsh_fnum	gequ	$1C	function numbersh_dadr	gequ	$1E	dcb addresssh_dcb	gequ	$22	copy of dcb!			  (this is MAX_DCB bytes long)lockp	gequ	$5A	work pointer used by LOCKfile_list gequ $5E	pointer to file list for wildcardsp1	gequ	$62	general use pointersp2	gequ	$66p3	gequ	$6Apdriver	gequ	$6E	location of the printer driver (23 bytesiop1	gequ	$84	I/O redirection work pointer!			These 7 values must remain together,!			in this order.lineNext gequ	$8A	next line buffer entrylp	gequ	$8E	current line pointerlDisp	gequ	$92	disp in lp for next characterlLength	gequ	$94	length of the lineep	gequ	$96	exec file line pointereDisp	gequ	$9A	exec file line dispeLength	gequ	$9C	exec file line length!			Memory manager work spacememory	gequ	$9E	memory listfreeList gequ	$A2	free memory listlastmem	gequ	$A6	last memory areamp1	gequ	$AA	memory manager work pointersmp2	gequ	$AEmp3	gequ	$B2mp4	gequ	$B6!		$BA	next free spot
+;
+;  Global variables effecting conditional compilation
+;
+true	gequ	1	boolean variables
+false	gequ	0
+debug	gequ	false	enable/ disable trace code
+apw	gequ	false	APW or ORCA/HOST version
+;
+;  Global variables used in more than one module
+;
+line_len gequ	255	line length (must be odd)
+;
+;  Direct page
+;
+r0	gequ	$00	working registers
+r1	gequ	$01
+r2	gequ	$02
+r3	gequ	$03
+r4	gequ	$04
+r5	gequ	$05
+r6	gequ	$06
+r7	gequ	$07
+r8	gequ	$08
+r9	gequ	$09
+r10	gequ	$0A
+r11	gequ	$0B
+r12	gequ	$0C
+r13	gequ	$0D
+r14	gequ	$0E
+r15	gequ	$0F
+r16	gequ	$10
+r17	gequ	$11
+r18	gequ	$12
+r19	gequ	$13
+r20	gequ	$14
+r21	gequ	$15
+r22	gequ	$16
+r23	gequ	$17
+r24	gequ	$18
+r25	gequ	$19
+r26	gequ	$1A
+r27	gequ	$1B
+sh_fnum	gequ	$1C	function number
+sh_dadr	gequ	$1E	dcb address
+sh_dcb	gequ	$22	copy of dcb
+!			  (this is MAX_DCB bytes long)
+lockp	gequ	$5A	work pointer used by LOCK
+file_list gequ $5E	pointer to file list for wildcards
+p1	gequ	$62	general use pointers
+p2	gequ	$66
+p3	gequ	$6A
+pdriver	gequ	$6E	location of the printer driver (23 bytes
+iop1	gequ	$84	I/O redirection work pointer
+
+!			These 7 values must remain together,
+!			in this order.
+lineNext gequ	$8A	next line buffer entry
+lp	gequ	$8E	current line pointer
+lDisp	gequ	$92	disp in lp for next character
+lLength	gequ	$94	length of the line
+ep	gequ	$96	exec file line pointer
+eDisp	gequ	$9A	exec file line disp
+eLength	gequ	$9C	exec file line length
+
+!			Memory manager work space
+memory	gequ	$9E	memory list
+freeList gequ	$A2	free memory list
+lastmem	gequ	$A6	last memory area
+mp1	gequ	$AA	memory manager work pointers
+mp2	gequ	$AE
+mp3	gequ	$B2
+mp4	gequ	$B6
+
+!		$BA	next free spot

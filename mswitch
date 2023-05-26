@@ -1,1 +1,17 @@
-**  ORCA/M - APW Shell**  Built under ORCA/M 1.1*if {#} == 0 then   echo assemble +t +e switch.asm   assemble +t +e switch.asmelse   echo assemble +t +e switch.asm names=({Parameters})   assemble +t +e switch.asm names=({Parameters})   echo crunch obj/switch   crunch obj/switchendlinkit
+*
+*  ORCA/M - APW Shell
+*
+*  Built under ORCA/M 1.1
+*
+
+if {#} == 0 then
+   echo assemble +t +e switch.asm
+   assemble +t +e switch.asm
+else
+   echo assemble +t +e switch.asm names=({Parameters})
+   assemble +t +e switch.asm names=({Parameters})
+   echo crunch obj/switch
+   crunch obj/switch
+end
+
+linkit
