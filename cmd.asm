@@ -5518,23 +5518,23 @@ ms1	lda	rdDevNum	get the size/name of the input device
 	OSD_Info wiRec
 	sta	err
 	jcs	rts
-	lda	riTotalBlocks
-	cmp	wiTotalBlocks
-	bne	ms2
-	lda	riTotalBlocks+2
-	cmp	wiTotalBlocks+2
-	beq	ms3
-ms2	puts	#'Volumes must be the same size',cr=t,errout=t
-	dec	err
-	brl	rts
-ms3	OSVolume vlRec	get the block size of the output device
+ms3	OSVolume vlRec2	get the block size of the output device
 	sta	err
 	jcs	rts
-	lda	vlBlockSize
+	lda	vlBlockSize2
 	sta	wdBlockSize
 	cmp	rdBlockSize	check for matching volume sizes
-	beq	bs1
+	beq	ms4
 	puts	#'The devices must use the same block size',cr=t,errout=t
+	dec	err
+	brl	rts
+ms4	lda	vlBlocks
+	cmp	vlBlocks2
+	bne	ms5
+	lda	vlBlocks+2
+	cmp	vlBlocks2+2
+	beq	bs1
+ms5	puts	#'Volumes must be the same size',cr=t,errout=t
 	dec	err
 	brl	rts
 ;
@@ -5543,7 +5543,7 @@ ms3	OSVolume vlRec	get the block size of the output device
 bs1	lda	wdBlockSize	reserve a buffer
 	sta	rdRequestCount
 	stz	rdRequestCount+2
-	mul4	rdRequestCount,riTotalBlocks
+	mul4	rdRequestCount,vlBlocks
 	mlalloc rdRequestCount
 	sta	rdBuffer
 	sta	wdBuffer
@@ -5551,10 +5551,10 @@ bs1	lda	wdBlockSize	reserve a buffer
 	stx	wdBuffer+2
 	ora	rdBuffer+2
 	bne	bs2
-	lsr	riTotalBlocks+2	unsuccessful -- halve the block count
-	ror	riTotalBlocks	 and try again
-	lda	riTotalBlocks
-	ora	riTotalBlocks+2
+	lsr	vlBlocks+2	unsuccessful -- halve the block count
+	ror	vlBlocks	 and try again
+	lda	vlBlocks
+	ora	vlBlocks+2
 	bne	bs1
 	puts	#'Insufficient memory',cr=t,errout=t
 	dec	err
@@ -5576,9 +5576,9 @@ cd1	OSD_Read rdRec	read blocks from the source device
 	OSD_Write wdRec	write blocks to the dest device
 	sta	err
 	bcs	rts
-	add4	rdStartingBlock,riTotalBlocks update the # of blocks copied
-	add4	wdStartingBlock,riTotalBlocks
-	cmp4	rdStartingBlock,wiTotalBlocks loop if there are more
+	add4	rdStartingBlock,vlBlocks update the # of blocks copied
+	add4	wdStartingBlock,vlBlocks
+	cmp4	rdStartingBlock,vlBlocks2 loop if there are more
 	blt	cd1
 ;
 ;  Shut down and return
@@ -5618,13 +5618,21 @@ wiDevNum ds	2
 	ds	2
 wiTotalBlocks ds 4
 
-vlRec	dc	i'6'	OSVolume record
+vlRec	dc	i'6'	OSVolume record for source volume
 	dc	a4'volumeName+2'
 	dc	a4'volumeName'
-	ds	4
+vlBlocks	ds	4
 	ds	4
 	ds	2
 vlBlockSize ds 2
+
+vlRec2	dc	i'6'	OSVolume record for destination volume
+	dc	a4'volumeName+2'
+	dc	a4'volumeName'
+vlBlocks2 ds	4
+	ds	4
+	ds	2
+vlBlockSize2 ds 2
 
 rdRec	dc	i'6'	OSD_Read record
 rdDevNum ds	2
@@ -10247,9 +10255,11 @@ PrintAuxType anop
 	move	#' ',buff1+2,#9
 
 	lda	nxFileType	write the language name
-	cmp	#$B0	if this is a source file then
+	cmp	#$B0	if this is a source or token file then
+	beq	ax0
+	cmp	#$AF
 	bne	ax4
-	lda	nxAuxType
+ax0	lda	nxAuxType
 	ora	#$8000
 	jsr	FindCommand2	  if the langauge does not exist then
 	bcc	ax4	    go write hex value

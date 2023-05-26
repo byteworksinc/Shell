@@ -1,7 +1,21 @@
-ORCA/Shell 2.0.4
-Copyright 1994, Byte Works Inc.
+ORCA/Shell 2.0.5
+Copyright 1999, Byte Works Inc.
 
 -- Change List --------------------------------------------------------------
+
+2.0.5       1.	The version number is 2.0.5.  This affects the shell's version
+		call.
+
+	    2.	SetLInfo did not properly record the istring field.
+
+		(Soenke Behrens)
+
+	    3.	Added TOK as the 3 letter code for $AF tokenized program files
+		These files are currently used by GSoft BASIC for source files.
+
+	    4.	The code used to copy disks using the COPY command has been
+		changed slightly to work around a bug in the Gus emulator.  All
+		functionality is the same.
 
 2.0.4       1.	The version number is 2.0.4.  This affects the shell's version
 		call.

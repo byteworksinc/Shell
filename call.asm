@@ -4353,6 +4353,10 @@ lb1	ph4	sh_dcb+d_saddr+2	  duplicate the source name
 	jsl	DuplicateOSString
 	sta	li_paddr
 	stx	li_paddr+2
+	ph4	sh_dcb+d_laddr+2	  duplicate the LInfo list
+	jsl	DuplicateOSString
+	sta	li_laddr
+	stx	li_laddr+2
 	bra	lb3
 
 lb2	anop		else {class 0 call}
@@ -4368,6 +4372,10 @@ lb2	anop		else {class 0 call}
 	jsl	PtoOSString
 	sta	li_paddr
 	stx	li_paddr+2
+	ph4	sh_dcb+d_laddr	  duplicate the LInfo list
+	jsl	PtoOSString
+	sta	li_laddr
+	stx	li_laddr+2
 
 lb3	ph4	li_saddr	make sure we are using colons
 	jsl	SlashToColon
@@ -4383,6 +4391,9 @@ lb3	ph4	li_saddr	make sure we are using colons
 	beq	lb4
 	lda	li_paddr
 	ora	li_paddr+2
+	beq	lb4
+	lda	li_laddr
+	ora	li_laddr+2
 	bne	lb5
 lb4	lda	#$0201
 	sta	error
@@ -4665,7 +4676,7 @@ vr1	lda	v
 	sta	[sh_dadr],Y
 	return #0
 
-v	dc	c'204 '
+v	dc	c'205 '
 	end
 
 ****************************************************************

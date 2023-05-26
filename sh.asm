@@ -197,6 +197,7 @@ typecode dt	01,BAD
 	dt	AB,GSB
 	dt	AC,TDF
 	dt	AD,BDF
+	dt	AF,TOK
 	dt	B0,SRC
 	dt	B1,OBJ
 	dt	B2,LIB
@@ -1251,10 +1252,10 @@ SplashScreen private
 
 	home
 	aif	apw,.a
-	prbl	#32
-	puts	#'ORCA/Shell 2.0.4',cr=t
+	prbl	#30
+	puts	#'ORCA/Shell 2.0.5 B3',cr=t
 	prbl	#22
-	puts	#'Copyright Byte Works, Inc. 1980-1996',cr=t
+	puts	#'Copyright Byte Works, Inc. 1980-1999',cr=t
 	ago	.b
 .a
 	prbl	#20
