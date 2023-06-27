@@ -3,7 +3,7 @@
 *
 
 unset exit
-set orca /hd/orca
+set orca 18
 
 Newer {orca}/ORCA.Sys16 sh.rez
 if {status} != 0
