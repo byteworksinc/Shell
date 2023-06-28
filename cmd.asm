@@ -9633,7 +9633,9 @@ Time	start
 	debug Time
 	using Common
 
-	lda	r3	check for no time field
+	lda	r0	check for no time field
+	ora	r2
+	ora	r4
 	bne	tm1
 	move	noTime,buff1+1,#16	move the no time field into
 	rts		 the string
@@ -9662,13 +9664,16 @@ tm3	sta	r8
 	lda	month+2,X
 	sta	buff1+7
 	lda	r3	set the year
-	cmp	#100	year has to be 0..99
+tm3a	cmp	#100	year has to be 0..99
 	blt	tm4
-	lda	#0
+	sbc	#100
+	bra	tm3a
 tm4	jsr	dec
+	jsr	xzero
 	stx	buff1+9
 	sty	buff1+10
-	lda	r1	branch if the time is 0
+	lda	r0	branch if the time is 0
+	ora	r1
 	ora	r2
 	beq	tm5
 	lda	r2	set the hour
