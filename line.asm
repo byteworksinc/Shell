@@ -934,9 +934,11 @@ lb1	phy		get the disp into the line buffer
 	txa
 	clc
 	adc	lDisp
-	cmp	lLength	branch if past the line
-	bge	none
-	tay		get the character
+	cmp	lLength	if past the line
+	blt	lb2
+	lda	#RETURN	  return RETURN
+	bra	none
+lb2	tay		get the character
 	lda	[lp],Y
 	and	#$00FF
 	cmp	#RETURN	branch if at end of line
