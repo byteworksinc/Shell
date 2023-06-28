@@ -4876,7 +4876,11 @@ OStoProDOSDate private
 
 	short I,M
 	lda	r3	year
-	sta	ProDOSDate+1
+	cmp	#100
+	blt	lb1
+	sec
+	sbc	#100
+lb1	sta	ProDOSDate+1
 	lda	r5	month
 	inc	A
 	asl	A
@@ -5009,7 +5013,11 @@ ProDOStoOSDate private
 	short I,M
 	lda	r0	year
 	lsr	A
-	sta	r7
+	cmp	#40
+	bge	lb1
+	clc
+	adc	#100
+lb1	sta	r7
 	lda	r0	month
 	lsr	A
 	lda	r1
