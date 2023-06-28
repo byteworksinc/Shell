@@ -1394,7 +1394,7 @@ write	phb		save user data bank
 	phx		save his X, Y
 	phy
 	lda	ch	quit if this is a line feed
-	and	#$007F
+	and	#$00FF
 	cmp	#lineFeed
 	beq	wr2
 	move4 errOut_file,iop1	get addr of file record
@@ -1526,7 +1526,7 @@ write	phb		save user data bank
 	phx		save his X, Y
 	phy
 	lda	ch	quit if this is a line feed
-	and	#$007F
+	and	#$00FF
 	cmp	#lineFeed
 	beq	wr2
 	move4 stOut_file,iop1	get addr of file record
