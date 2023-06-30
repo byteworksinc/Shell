@@ -1,9 +1,21 @@
-ORCA/Shell 2.0.5
+ORCA/Shell 2.0.6
 Copyright 1999, Byte Works Inc.
+Updated 2023
 
 -- Change List --------------------------------------------------------------
 
-2.0.5       1.	The version number is 2.0.5.  This affects the shell's version
+2.0.6       1.	The version number is 2.0.6.  This affects the shell's version
+		call.
+
+	    2.	The CATALOG command now prints years 2000 or later properly.
+
+	    2.	Class 0 FASTFILE calls now represent years 2000 to 2039 as
+		specified in ProDOS 8 Technical Note #28.
+
+	    3.	Characters with an ordinal value of $8A are no longer filtered
+		out of a command's output when it is redirected.
+
+2.0.5 B3    1.	The version number is 2.0.5.  This affects the shell's version
 		call.
 
 	    2.	SetLInfo did not properly record the istring field.

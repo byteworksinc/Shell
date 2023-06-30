@@ -1252,8 +1252,8 @@ SplashScreen private
 
 	home
 	aif	apw,.a
-	prbl	#30
-	puts	#'ORCA/Shell 2.0.5 B3',cr=t
+	prbl	#32
+	puts	#'ORCA/Shell 2.0.6',cr=t
 	prbl	#22
 	puts	#'Copyright Byte Works, Inc. 1980-1999',cr=t
 	ago	.b
