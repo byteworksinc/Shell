@@ -1,0 +1,22 @@
+filetype -p =.asm src; change -p =.asm asm65816
+filetype -p =.macros src; change -p =.macros asm65816
+filetype sh.dp src; change sh.dp asm65816
+filetype sh.smac src; change sh.smac asm65816
+filetype sh.rez src; change sh.rez rez
+filetype backup src; change backup exec
+filetype count src; change count exec
+filetype linkit src; change linkit exec
+filetype make src; change make exec
+filetype mcall src; change mcall exec
+filetype mcmd src; change mcmd exec
+filetype mcontrol src; change mcontrol exec
+filetype mio src; change mio exec
+filetype mline src; change mline exec
+filetype mmm src; change mmm exec
+filetype msh src; change msh exec
+filetype msubs src; change msubs exec
+filetype mswitch src; change mswitch exec
+filetype shell.notes txt
+filetype LICENSE txt
+filetype obj:README.txt txt
+filetype libraries:SYSLIB lib
